@@ -8,7 +8,7 @@ const userSchema = new Schema(
             type : String, 
             required : true, 
             unique: true, 
-            lowercas: true, 
+            lowercase: true, 
             trim: true,
             index: true, 
 
@@ -17,11 +17,11 @@ const userSchema = new Schema(
             type : String, 
             required : true, 
             unique: true, 
-            lowercas: true, 
+            lowercase: true, 
             trim: true,
 
         },
-        fulName: {
+        fullName: {
             type : String, 
             required : true, 
             trim: true,
@@ -30,7 +30,7 @@ const userSchema = new Schema(
         },
         avatar: {
             type: String, 
-            required: true, 
+ 
     
         }, 
         coverImage: {
@@ -59,7 +59,7 @@ userSchema.pre("save" , async function (next) {
     if(!this.isModified("password")) return next();
 
 
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 } )
 
